@@ -14,7 +14,7 @@ public class P41PandigitalPrime {
 
     private static boolean isPrime(long possible) {
         long last = possible % 10;
-        if (last == 2 || last == 4 || last == 5 || last == 6 || last == 8 || last == 0) {
+        if (last == 2 || last == 4 || last == 5 || last == 6 || last == 8 || last == 0) { //assuming number >10
             return false;
         }
         for (long i=3; i<possible/2; i++) {
@@ -69,16 +69,15 @@ public class P41PandigitalPrime {
 
 
     public static void main(String[] args) {
-        long highest = 0;
         List<Long> palindromes = allPalindromes();
+        Collections.sort(palindromes);
         Collections.reverse(palindromes);
         for (long l : palindromes) {
-            if (isPrime(l) && highest < l) {
+            if (isPrime(l))  {
                 System.out.println("Found " + l);
-                highest = l;
+                return;
             }
         }
-        System.out.println("Highest is " + highest);
     }
 
 }

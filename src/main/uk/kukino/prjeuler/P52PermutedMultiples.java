@@ -33,10 +33,7 @@ public class P52PermutedMultiples {
       List<Character> chars = new ArrayList<>();
       for (int i=0; i<a.length(); i++) chars.add(a.charAt(i));
       for (int i=0; i<b.length(); i++) {
-         char bc = b.charAt(i);
-         if (chars.contains(bc)) {
-            chars.remove((Character) bc);
-         } else {
+         if (!chars.remove((Character) b.charAt(i) )) {
             return false;
          }
       }

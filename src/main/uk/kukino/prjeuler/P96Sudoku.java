@@ -237,7 +237,8 @@ public class P96Sudoku {
         private boolean autoPlayHiddenSinglesInRowsAndCols() {
             int total = 0;
 
-            // if one number can only be played in one row, it will auto play it.
+            // if one number can only be played in ONLY one cell in the row (even if that cell is shared with other
+            // possible candidates), it will auto play it as there is no alternative. (but only if it is a legal move.)
             for (byte row = 0; row<9; row++) {
                 int count[] = new int[10];
                 for (byte col = 0; col<9; col++) {

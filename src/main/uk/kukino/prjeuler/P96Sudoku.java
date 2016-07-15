@@ -330,16 +330,16 @@ public class P96Sudoku {
             if (isComplete()) return this; // found!
 
             SuPuzzle child = new SuPuzzle(this);
-
-            // #1 first, tries to sort out the hidden plays
             child.reEvaluatePossibles();
             if (!child.isFeasible()) return null;
+
+            // #1 first, tries to sort out the hidden plays
             if (child.autoPlayHiddenSinglesInRowsAndCols()) {
                 child.reEvaluatePossibles();
                 if (!child.isFeasible()) return null;
             }
 
-            // #2 then, the trivial moves and iterates sorting out hidden plays
+            // #2 then, does trivial moves and iterates sorting out hidden plays
             // ... until no hidden-play or trivial move is available
             List<Pair<Byte,Byte>> possibles = child.getCoordsWithOneOption();
 
@@ -383,11 +383,11 @@ public class P96Sudoku {
             }
 
             // #3 finally, exhaustive & recursive search
+            // uses hashes for not repeating puzzle configurations in different parts of the branches
+
             child.reEvaluatePossibles();
             possibles = child.getCoordsWithLessRelatedPossibilitiesFirst();
 
-            // exploration after trivial-moves
-            // uses hashes for not repeating puzzle configurations in different parts of the branches
             for (Pair<Byte,Byte> focus : possibles) {
                 byte row = focus.getLeft();
                 byte col = focus.getRight();

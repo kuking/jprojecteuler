@@ -1,2 +1,5 @@
 # jprojecteuler
-ProjectEuler.net exercises in Java
+
+Solutions to some ProjectEuler.net problems. Java implementations, at times using Guava & Apache Commons Lang3.
+
+Hopefully are self-explanatory.
